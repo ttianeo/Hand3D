@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D 粒子系统 - 手势控制</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <!-- Three.js canvas will be inserted here -->
+    </div>
+    
+    <!-- Video element for webcam -->
+    <video id="webcam" autoplay playsinline></video>
+    
+    <!-- UI Panel -->
+    <div id="ui-panel">
+        <h2>粒子控制面板</h2>
+        
+        <div class="control-group">
+            <label for="model-select">选择模型</label>
+            <select id="model-select">
+                <option value="heart">爱心 ❤️</option>
+                <option value="flower">花朵 🌸</option>
+                <option value="saturn">土星 🪐</option>
+                <option value="buddha">佛像 🧘</option>
+                <option value="firework">烟花 🎆</option>
+            </select>
+        </div>
+        
+        <div class="control-group">
+            <label for="color-picker">粒子颜色</label>
+            <input type="color" id="color-picker" value="#ff6b9d">
+        </div>
+        
+        <div class="control-group">
+            <label for="particle-count">粒子数量</label>
+            <input type="range" id="particle-count" min="500" max="5000" value="2000">
+            <span id="particle-count-value">2000</span>
+        </div>
+        
+        <div class="control-group">
+            <label for="particle-size">粒子大小</label>
+            <input type="range" id="particle-size" min="1" max="10" value="3" step="0.5">
+            <span id="particle-size-value">3</span>
+        </div>
+        
+        <div class="status-group">
+            <div class="status-item">
+                <span class="status-label">左手状态:</span>
+                <span id="left-hand-status" class="status-value">未检测</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">右手状态:</span>
+                <span id="right-hand-status" class="status-value">未检测</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">粒子扩散:</span>
+                <span id="expansion-status" class="status-value">0%</span>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <p>📷 张开双手扩散粒子</p>
+            <p>✊ 握紧双手收缩粒子</p>
+        </div>
+    </div>
+    
+    <!-- Fullscreen button -->
+    <button id="fullscreen-btn" title="全屏">⛶</button>
+    
+    <!-- Toggle UI button -->
+    <button id="toggle-ui-btn" title="显示/隐藏面板">☰</button>
+    
+    <!-- Camera permission prompt -->
+    <div id="camera-prompt">
+        <div class="prompt-content">
+            <h2>需要摄像头权限</h2>
+            <p>此应用需要访问摄像头来检测手势</p>
+            <button id="enable-camera-btn">启用摄像头</button>
+        </div>
+    </div>
+    
+    <!-- Loading indicator -->
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>加载中...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "./node_modules/three/build/three.module.min.js"
+        }
+    }
+    </script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
